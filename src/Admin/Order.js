@@ -20,7 +20,7 @@ function Order() {
     };
 
     const [currentPage, setCurrentPage] = useState(1);
-const ordersPerPage = 10;
+const ordersPerPage = 8;
 
 const indexOfLastOrder = currentPage * ordersPerPage;
 const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
