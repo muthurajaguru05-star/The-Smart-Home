@@ -138,7 +138,7 @@ function Webproduct() {
           </span>
         </div>
 
-        <div className="main-layout">
+        <div className="productmain-layout">
           {/* CATEGORY */}
           <div className="category-section">
             <h2>All Category</h2>

@@ -84,82 +84,64 @@
   width: 100%;
 }
 
-/* LOGIN */
+/* LOGIN & USER INFO */
 .loginlink {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 6px;
   text-decoration: none;
   color: white;
   transition: 0.3s ease;
+  font-weight: 600;
 }
 
-/* login bounce */
 .loginlink:hover {
   color: yellow;
-  transform: translateY(-5px);
 }
 
-/* ICONS */
-.icons {
+.user-info {
   display: flex;
   align-items: center;
-  gap: 20px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  white-space: nowrap;
 }
 
-.icons i {
-  font-size: 24px;
-  color: black;
-  transition: 0.3s ease;
-}
-
-/* cart icon animation */
-.cart-icon i {
-  animation: cartPulse 2s infinite;
-}
-
-.mobile-toggle-btn {
-  display: none;
-  background: transparent;
-  border: none;
+.user-email {
   color: white;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: center;
-}
-
-.user-info{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.user-email{
-  color:white;
-  font-size:15px;
-  font-weight:600;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .logout-btn {
-  border:none;
-  padding:5px 10px;
-  background:red;
-  color:white;
-  border-radius:5px;
-  cursor:pointer;
-  margin-left: 10px;
+  border: none;
+  padding: 6px 14px;
+  background: red;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s ease;
+  white-space: nowrap;
+  margin-left: 5px;
+}
+
+.logout-btn:hover {
+  background: #cc0000;
+  transform: translateY(-2px);
+}
+
+.navbar-right-controls {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
 }
 
 @media screen and (max-width: 900px) {
   .navbar {
     padding: 12px 16px;
-    flex-wrap: wrap;
   }
 
   .logo {
@@ -195,16 +177,18 @@
   }
 
   .icons {
-    width: 100%;
+    display: flex;
+    align-items: center;
   }
 
   .user-info {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    flex-direction: row;
     gap: 8px;
   }
 
   .cart-wrapper {
-    margin-left: auto;
+    margin-left: 0;
   }
 }
 
@@ -441,14 +425,12 @@
 
 /* Right Side Box */
 .content-box {
-  width: 35%;
-  min-width: 280px;
-  margin-right: 500px;
-  padding: 30px;
+  width: auto;
+  padding: 20px;
   border-radius: 12px;
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: flex-end;
+  gap: 40px;
   flex-wrap: wrap;
 }
 

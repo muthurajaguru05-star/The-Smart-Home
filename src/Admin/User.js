@@ -35,8 +35,9 @@ const totalPages = Math.ceil(getcat.length / usersPerPage);
 
   return (
     <div className="main-layout">
-
-      <Admin/>
+      <div className="sidebar">
+        <Admin />
+      </div>
 
       <div className="content">
         <div className="top-section">
@@ -46,66 +47,74 @@ const totalPages = Math.ceil(getcat.length / usersPerPage);
           </div>
 
           <div className="wholeuser">
-            <i className="fa-solid fa-circle-user"></i>
-            <h2 className="userh2">USER</h2>
+            <i className="fa-solid fa-users"></i>
+            <h2 className="userh2">USER MANAGEMENT</h2>
           </div>
         </div>
 
-        <table className="usertable">
-          <thead>
-            <tr>
-              <th>S No</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Contact</th>
-            </tr>
-          </thead>
+        <div className="table-wrapper">
+          <div className="table-scroll-area">
+            <table className="usertable">
+              <thead>
+                <tr>
+                  <th>S No</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Contact</th>
+                </tr>
+              </thead>
 
-          <tbody>
-            {currentUsers.map((a, index) => (
-              <tr key={a._id}>
-                <td>{indexOfFirstUser + index + 1}</td>
-                <td>{a.name}</td>
-                <td>{a.email}</td>
-                <td>{a.contact}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+              <tbody>
+                {currentUsers.map((a, index) => (
+                  <tr key={a._id || index}>
+                    <td>{indexOfFirstUser + index + 1}</td>
+                    <td style={{ textAlign: "left", paddingLeft: "30px" }}>
+                      <span className="user-avatar-badge">
+                        {a.name ? a.name.charAt(0).toUpperCase() : "U"}
+                      </span>
+                      {a.name}
+                    </td>
+                    <td>{a.email}</td>
+                    <td>{a.contact || "N/A"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {totalPages > 1 && (
+            <div className="pagination-baruser">
+              <button
+                className="page-btnuser"
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((prev) => prev - 1)}
+              >
+                <i className="fa-solid fa-chevron-left"></i> Prev
+              </button>
+
+              {[...Array(totalPages)].map((_, index) => (
+                <button
+                  key={index}
+                  className={`page-btnuser ${
+                    currentPage === index + 1 ? "active-page" : ""
+                  }`}
+                  onClick={() => setCurrentPage(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+
+              <button
+                className="page-btnuser"
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage((prev) => prev + 1)}
+              >
+                Next <i className="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-      {totalPages > 1 && (
-  <div className="pagination-baruser">
-
-    <button
-      className="page-btnuser"
-      disabled={currentPage === 1}
-      onClick={() => setCurrentPage((prev) => prev - 1)}
-    >
-      Prev
-    </button>
-
-    {[...Array(totalPages)].map((_, index) => (
-      <button
-        key={index}
-        className={`page-btnuser ${
-          currentPage === index + 1 ? "active-page" : ""
-        }`}
-        onClick={() => setCurrentPage(index + 1)}
-      >
-        {index + 1}
-      </button>
-    ))}
-
-    <button
-      className="page-btnuser"
-      disabled={currentPage === totalPages}
-      onClick={() => setCurrentPage((prev) => prev + 1)}
-    >
-      Next
-    </button>
-
-  </div>
-)}
     </div>
   );
 }

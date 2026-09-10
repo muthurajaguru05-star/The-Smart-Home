@@ -22,8 +22,10 @@
 .main-content{
     flex:1;
     background:#f4f7fe;
+    padding: 24px 32px;
     animation:slideUp .8s ease;
-        overflow-y:auto;
+    overflow-y:auto;
+    box-sizing: border-box;
 }
 
 @keyframes slideUp{

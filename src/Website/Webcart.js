@@ -9,39 +9,36 @@ function Webcart() {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-  const username = localStorage.getItem("name");
+    const username = localStorage.getItem("name");
 
-  if (!username) {
-    navigate("/login");
-    return;
-  }
+    if (!username) {
+      navigate("/login");
+      return;
+    }
 
-  const cartKey = `cart_${username}`;
+    const cartKey = `cart_${username}`;
+    const storedCart =
+      JSON.parse(localStorage.getItem(cartKey)) || [];
 
-  const storedCart =
-    JSON.parse(localStorage.getItem(cartKey)) || [];
-
-  setCartItems(storedCart);
-}, [navigate]);
+    setCartItems(storedCart);
+  }, [navigate]);
 
   const updateCart = (updatedCart) => {
-  const username = localStorage.getItem("name");
+    const username = localStorage.getItem("name");
 
-  if (!username) return;
+    if (!username) return;
 
-  const cartKey = `cart_${username}`;
+    const cartKey = `cart_${username}`;
 
-  setCartItems(updatedCart);
+    setCartItems(updatedCart);
 
-  localStorage.setItem(
-    cartKey,
-    JSON.stringify(updatedCart)
-  );
+    localStorage.setItem(
+      cartKey,
+      JSON.stringify(updatedCart)
+    );
 
-  window.dispatchEvent(
-    new Event("cartUpdated")
-  );
-};
+    window.dispatchEvent(new Event("cartUpdated"));
+  };
 
   const increaseQty = (index) => {
     const updated = [...cartItems];
@@ -81,8 +78,7 @@ function Webcart() {
           )
         ) || 0;
 
-      const qty =
-        Number(item.qty) || 1;
+      const qty = Number(item.qty) || 1;
 
       return total + price * qty;
     },
@@ -94,6 +90,8 @@ function Webcart() {
       <Navebar />
 
       <div className="webcart-container">
+
+        {/* HEADER */}
         <div className="webcart-header">
           <Link
             to="/webhome"
@@ -105,10 +103,11 @@ function Webcart() {
             HOME
           </Link>
 
-          {" / "}
+          <span>&nbsp; / &nbsp;</span>
           <span>CART</span>
         </div>
 
+        {/* CONTENT */}
         <div
           className={`webcart-content ${
             cartItems.length === 0
@@ -116,112 +115,140 @@ function Webcart() {
               : ""
           }`}
         >
+
           {/* EMPTY CART */}
           {cartItems.length === 0 ? (
             <div className="empty-cart-box">
+              <div className="empty-cart-icon">
+                🛒
+              </div>
+
               <h2>CART IS EMPTY</h2>
+
+              <p>
+                Your shopping cart is waiting for
+                some amazing products.
+              </p>
+
+              <button
+                className="webcheckout-btn"
+                onClick={() =>
+                  navigate("/webhome")
+                }
+              >
+                Continue Shopping
+              </button>
             </div>
           ) : (
             <>
               {/* LEFT SIDE */}
               <div className="webcart-left">
-                {cartItems.map(
-                  (item, index) => {
-                    const price =
-                      Number(
-                        String(
-                          item.price || 0
-                        ).replace(
-                          /[₹,]/g,
-                          ""
-                        )
-                      ) || 0;
 
-                    const qty =
-                      Number(item.qty) || 1;
+                {cartItems.map((item, index) => {
+                  const price =
+                    Number(
+                      String(
+                        item.price || 0
+                      ).replace(
+                        /[₹,]/g,
+                        ""
+                      )
+                    ) || 0;
 
-                    return (
-                      <div
-                        key={index}
-                        className="webcart-product"
-                      >
+                  const qty =
+                    Number(item.qty) || 1;
+
+                  return (
+                    <div
+                      key={index}
+                      className="webcart-product"
+                    >
+
+                      {/* IMAGE */}
+                      <div className="webcart-image-wrapper">
                         <img
                           src={item.image}
                           alt={item.title}
-                          onClick={() => navigate(`/product/${item._id}`)}      
+                          onClick={() =>
+                            navigate(
+                              `/product/${item._id}`
+                            )
+                          }
                         />
+                      </div>
 
-                        <div className="webproduct-details">
-                          <h3>
-                            {item.title}
-                          </h3>
+                      {/* DETAILS */}
+                      <div className="webproduct-details">
 
-                          <div className="webqty-box">
-                            <button
-                              onClick={() =>
-                                decreaseQty(
-                                  index
-                                )
-                              }
-                            >
-                              -
-                            </button>
+                        <h3>
+                          {item.title}
+                        </h3>
 
-                            <span>
-                              {qty}
-                            </span>
+                        <div className="webqty-box">
+                          <button
+                            onClick={() =>
+                              decreaseQty(index)
+                            }
+                            aria-label="Decrease quantity"
+                          >
+                            −
+                          </button>
 
-                            <button
-                              onClick={() =>
-                                increaseQty(
-                                  index
-                                )
-                              }
-                            >
-                              +
-                            </button>
-                          </div>
+                          <span>
+                            {qty}
+                          </span>
 
                           <button
-                            className="webremove-btn"
                             onClick={() =>
-                              removeItem(
-                                index
-                              )
+                              increaseQty(index)
                             }
+                            aria-label="Increase quantity"
                           >
-                            Remove
+                            +
                           </button>
                         </div>
 
-                        <div className="webprice">
-                          <h3>
-                            {qty} x ₹
-                            {price.toLocaleString()}
-                          </h3>
-
-                          <h2>
-                            ₹
-                            {(
-                              price *
-                              qty
-                            ).toLocaleString()}
-                          </h2>
-                        </div>
+                        <button
+                          className="webremove-btn"
+                          onClick={() =>
+                            removeItem(index)
+                          }
+                        >
+                          Remove
+                        </button>
                       </div>
-                    );
-                  }
-                )}
+
+                      {/* PRICE */}
+                      <div className="webprice">
+
+                        <h3>
+                          {qty} × ₹
+                          {price.toLocaleString()}
+                        </h3>
+
+                        <h2>
+                          ₹
+                          {(
+                            price * qty
+                          ).toLocaleString()}
+                        </h2>
+
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
               {/* RIGHT SIDE */}
               <div className="webcart-right">
+
                 <h2>
                   Order Summary (
-                  {
-                    cartItems.length
-                  }{" "}
-                  items)
+                  {cartItems.length}{" "}
+                  {cartItems.length === 1
+                    ? "item"
+                    : "items"}
+                  )
                 </h2>
 
                 <hr />
@@ -244,8 +271,8 @@ function Webcart() {
                         className="websummary-row"
                       >
                         <span>
-                          {item.title
-                            ?.length > 20
+                          {item.title?.length >
+                          20
                             ? item.title.substring(
                                 0,
                                 20
@@ -254,7 +281,7 @@ function Webcart() {
                         </span>
 
                         <span>
-                          {item.qty || 1} x ₹
+                          {item.qty || 1} × ₹
                           {price.toLocaleString()}
                         </span>
                       </div>
@@ -280,13 +307,17 @@ function Webcart() {
                     Delivery
                   </span>
 
-                  <span>Free</span>
+                  <span className="free-delivery">
+                    Free
+                  </span>
                 </div>
 
                 <hr />
 
                 <div className="websummary-row total">
-                  <span>Total</span>
+                  <span>
+                    Total
+                  </span>
 
                   <span>
                     ₹
@@ -297,13 +328,17 @@ function Webcart() {
                 <button
                   className="webcheckout-btn"
                   onClick={() =>
-                    navigate(
-                      "/checkout"
-                    )
+                    navigate("/checkout")
                   }
                 >
-                  Checkout
+                  <span>
+                    Proceed to Checkout
+                  </span>
+                  <span className="checkout-arrow">
+                    →
+                  </span>
                 </button>
+
               </div>
             </>
           )}

@@ -14,7 +14,6 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  
 }
 
 /* background animation */
@@ -49,7 +48,6 @@
 /* logo hover spin */
 .logo:hover {
   transform: rotate(10deg) ;
-  /* box-shadow: 0 0 25px rgba(255,255,255,0.8); */
 }
 
 /* NAV LINKS */
@@ -62,7 +60,6 @@
   position: relative;
   transition: 0.3s ease;
 }
-
 
 /* underline animation */
 .navelink::after {
@@ -100,7 +97,6 @@
   color: yellow;
   transform: translateY(-5px);
 }
-  
 
 /* ICONS */
 .homeicons {
@@ -314,7 +310,10 @@
 .user-info{
   display:flex;
   align-items:center;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap:10px;
+  white-space: nowrap;
 }
 
 .user-email{
@@ -361,16 +360,18 @@
   }
 
   .homeicons {
-    width: 100%;
+    display: flex;
+    align-items: center;
   }
 
   .user-info {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    flex-direction: row;
     gap: 8px;
   }
 
   .cart-wrapper {
-    margin-left: auto;
+    margin-left: 0;
   }
 }
 
@@ -392,7 +393,15 @@
   color:white;
   border-radius:5px;
   cursor:pointer;
-  margin-left: 10px;
+  margin-left: 5px;
+  white-space: nowrap;
+}
+
+.navbar-right-controls {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
 }
 
 @media(max-width: 768px) {
@@ -409,6 +418,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .navbar-right-controls {
+    gap: 12px;
   }
 
   .nav-menu {
@@ -440,4 +453,4 @@
     width: 290px;
     right: -10px;
   }
-}
+}

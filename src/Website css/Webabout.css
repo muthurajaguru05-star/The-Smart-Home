@@ -1,276 +1,346 @@
+/* ================= MAIN CONTAINER ================= */
 
-/* ================= MAIN ================= */
-
-.main-container {
-  padding: 30px;
-  background: linear-gradient(180deg, #faf2f3, #f5f7ff);
-  font-family: "Segoe UI", sans-serif;
+.about-page-wrapper {
+  background: #f8fafc;
   overflow-x: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* ================= ANIMATION ================= */
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(60px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Hero Section */
+.about-hero-section {
+  position: relative;
+  padding: 80px 20px 60px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  color: #ffffff;
+  text-align: center;
+  overflow: hidden;
 }
 
-.animate {
-  opacity: 0;
-  animation: fadeUp 1s ease forwards;
+.about-hero-section::before {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: rgba(255, 107, 0, 0.2);
+  border-radius: 50%;
+  filter: blur(150px);
+  top: -100px;
+  left: -100px;
 }
 
-.delay-1 { animation-delay: 0.2s; }
-.delay-2 { animation-delay: 0.4s; }
-.delay-3 { animation-delay: 0.6s; }
-
-/* ================= ABOUT BOX (GLASS EFFECT) ================= */
-
-.about-box {
-  padding: 35px 60px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.4s ease;
+.about-hero-content {
+  max-width: 850px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
-.about-box:hover {
-  transform: translateY(-5px);
-}
-
-.about-title {
-  font-size: 34px;
+.about-hero-title {
+  font-size: 48px;
   font-weight: 800;
-  letter-spacing: 3px;
-  background: linear-gradient(90deg, #ff4d6d, #4d7cff);
+  letter-spacing: -1px;
+  margin: 0 0 15px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* ================= AC SECTION ================= */
-
-.about-image {
-  width: 100%;
-  max-width: 1550px;
-  height: 420px;
-  border-radius: 16px;
-  margin-top: 25px;
-  object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  transition: all 0.6s ease;
-  filter: brightness(0.95);
+.about-hero-subtitle {
+  font-size: 18px;
+  color: #94a3b8;
+  line-height: 1.7;
+  margin-bottom: 35px;
 }
 
-.about-image:hover {
-  transform: scale(1.02);
-  filter: brightness(1.05);
-}
-
-.about-heading {
-  text-align: center;
-  font-size: 40px;
-  font-weight: 700;
-  margin: 40px 0 25px;
-  color: #1f2b61;
+/* Stat Counter Bar */
+.stats-counter-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1050px;
+  margin: 0 auto -60px;
   position: relative;
+  z-index: 10;
+  padding: 0 20px;
 }
 
-.about-heading::after {
-  content: "";
-  width: 120px;
-  height: 4px;
-  background: linear-gradient(90deg, #ff4d6d, #4d7cff);
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 10px;
-}
-
-.about-text {
-  width: 75%;
-  margin: auto;
-  font-size: 20px;
-  line-height: 1.9;
+.stat-box-card {
+  background: #ffffff;
+  padding: 25px 20px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
   text-align: center;
-  background: rgba(255,255,255,0.5);
-  padding: 30px;
+  border: 1px solid #f1f5f9;
+  transition: all 0.35s ease;
+}
+
+.stat-box-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 22px 45px rgba(255, 107, 0, 0.15);
+  border-color: rgba(255, 107, 0, 0.3);
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ff6b00;
+  display: block;
+}
+
+.stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Mission & Vision Section */
+.mission-vision-container {
+  max-width: 1100px;
+  margin: 120px auto 70px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.mv-card-box {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  transition: all 0.35s ease;
+}
+
+.mv-card-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.09);
+}
+
+.mv-icon-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ff6b00, #ff9800);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.25);
+}
+
+.mv-card-box h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 12px 0;
+}
+
+.mv-card-box p {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Why Choose Us Grid */
+.why-choose-section {
+  background: #f1f5f9;
+  padding: 80px 20px;
+}
+
+.section-header-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header-title h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+}
+
+.section-header-title p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+.features-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.feature-card-item {
+  background: #ffffff;
+  padding: 30px 24px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  transition: all 0.35s ease;
+}
+
+.feature-card-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 107, 0, 0.1);
+  color: #ff6b00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin: 0 auto 18px auto;
+  transition: all 0.3s ease;
+}
+
+.feature-card-item:hover .feature-icon-circle {
+  background: #ff6b00;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.feature-card-item h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+}
+
+.feature-card-item p {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Category Highlights Cards */
+.products-highlight-container {
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.highlight-row-card {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.highlight-row-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 107, 0, 0.3);
+}
+
+.highlight-image-box {
+  width: 40%;
+  flex-shrink: 0;
+}
+
+.highlight-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
   border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-  transition: 0.4s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease;
 }
 
-.about-text:hover {
-  transform: translateY(-5px);
+.highlight-row-card:hover .highlight-img {
+  transform: scale(1.04);
 }
 
-/* ================= IPHONE SECTION ================= */
-
-.iphone-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 90px;
-  gap: 50px;
-  flex-wrap: wrap;
+.highlight-text-content {
+  width: 60%;
 }
 
-.iphone-image-section {
-  width: 45%;
-  text-align: center;
+.highlight-text-content h3 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 12px 0;
 }
 
-.iphone-image {
-  width: 100%;
-  max-width: 520px;
-  border-radius: 22px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-  transition: all 0.6s ease;
+.highlight-text-content p {
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0 0 20px 0;
 }
 
-.iphone-image:hover {
-  transform: scale(1.07) rotate(-1deg);
-}
-
-.iphone-text-section {
-  width: 50%;
-}
-
-.about-iphone {
-  font-size: 36px;
+.explore-category-btn {
+  padding: 10px 24px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #ff6b00, #ff9800);
+  color: #ffffff;
+  border: none;
   font-weight: 700;
-  margin-bottom: 20px;
-  color: #111;
-}
-
-.about-iphonetext {
-  font-size: 18px;
-  line-height: 2;
-  background: rgba(255,255,255,0.7);
-  padding: 28px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-  transition: 0.4s ease;
-}
-
-.about-iphonetext:hover {
-  transform: translateY(-6px);
-}
-
-/* ================= TV SECTION ================= */
-
-.tv-container {
-  display: flex;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(255, 107, 0, 0.25);
+  transition: all 0.3s ease;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 90px;
-  gap: 50px;
-  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.tv-text-section {
-  width: 50%;
+.explore-category-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(255, 107, 0, 0.4);
 }
 
-.tv-heading {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #111;
-}
+/* Responsive Rules */
+@media (max-width: 900px) {
+  .stats-counter-bar,
+  .features-grid-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.tv-text {
-  font-size: 18px;
-  line-height: 2;
-  background: rgba(255,255,255,0.7);
-  padding: 28px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-  transition: 0.4s ease;
-}
+  .mission-vision-container {
+    grid-template-columns: 1fr;
+    margin-top: 90px;
+  }
 
-.tv-text:hover {
-  transform: translateY(-6px);
-}
-
-.tv-image-section {
-  width: 45%;
-  text-align: center;
-}
-
-.tv-image {
-  width: 100%;
-  max-width: 480px;
-  border-radius: 22px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-  transition: all 0.6s ease;
-}
-
-.tv-image:hover {
-  transform: scale(1.07) rotate(1deg);
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 1024px) {
-  .iphone-container,
-  .tv-container {
+  .highlight-row-card {
     flex-direction: column;
-    text-align: center;
-    gap: 30px;
-    margin-top: 40px;
+    padding: 24px;
   }
 
-  .iphone-image-section,
-  .iphone-text-section,
-  .tv-image-section,
-  .tv-text-section {
+  .highlight-image-box,
+  .highlight-text-content {
     width: 100%;
   }
 
-  .about-text {
-    width: 90%;
+  .about-hero-title {
+    font-size: 32px;
   }
 }
 
-@media (max-width: 768px) {
-  .main-container {
-    padding: 15px;
-  }
-
-  .about-box {
-    padding: 20px 30px;
-  }
-
-  .about-title {
-    font-size: 24px;
-    letter-spacing: 1px;
-  }
-
-  .about-heading, .about-iphone, .tv-heading {
-    font-size: 24px;
-    margin: 25px 0 15px;
-  }
-
-  .about-image {
-    height: 220px;
-  }
-
-  .about-text, .about-iphonetext, .tv-text {
-    width: 100%;
-    font-size: 15px;
-    line-height: 1.6;
-    padding: 18px;
-    box-sizing: border-box;
+@media (max-width: 550px) {
+  .stats-counter-bar,
+  .features-grid-layout {
+    grid-template-columns: 1fr;
   }
 }

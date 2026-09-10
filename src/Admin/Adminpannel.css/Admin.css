@@ -1,5 +1,3 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap'); */
-
 /* SIDEBAR */
 
 .admindashboard{
@@ -14,6 +12,8 @@
 
     display:flex;
     flex-direction:column;
+    z-index: 100;
+    box-sizing: border-box;
 
     animation:sidebarFade .8s ease;
 }
@@ -61,7 +61,6 @@
 
 .online i{
     animation:rotate 3s linear infinite;
-    
 }
 
 @keyframes rotate{
@@ -97,16 +96,15 @@
 .adminmenu{
     display:flex;
     flex-direction:column;
-    gap:20px;
+    gap:16px;
+    padding: 0 12px;
 }
 
 /* BUTTON */
 
 .adminbtn{
-    width:220px;
-    height:52px;
-
-    margin:auto;
+    width:100%;
+    height:48px;
 
     border:none;
     outline:none;
@@ -125,11 +123,12 @@
     transition:.4s;
 
     box-shadow:0 3px 10px rgba(0,0,0,.08);
+    box-sizing: border-box;
 }
 
 .adminbtn:hover{
     background:linear-gradient(90deg,#10b981,#38bdf8);
-    transform:translateX(8px);
+    transform:translateX(6px);
 
     box-shadow:0 8px 20px rgba(16,185,129,.3);
 }
@@ -167,7 +166,7 @@
 
 .logout-btn{
     margin-top:auto;
-    margin-bottom:30px;
+    margin-bottom:24px;
 }
 
 /* ACTIVE MENU */
@@ -195,32 +194,48 @@
     border-radius:20px;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE DESIGN FOR MOBILE / TABLET */
 
-@media(max-width:768px){
+@media (max-width: 900px) {
+    .admindashboard {
+        width: 72px;
+        min-width: 72px;
+    }
 
-.admindashboard{
-    width:80px;
-}
+    .adminlink,
+    .online span,
+    .dikbox h3,
+    .dikbox i {
+        display: none;
+    }
 
-.adminlink,
-.online span,
-.dikbox h3{
-    display:none;
-}
+    .adminmale {
+        width: 48px;
+        height: 48px;
+        margin: 15px auto 10px;
+        border-width: 2px;
+    }
 
-.adminbtn{
-    width:60px;
-    justify-content:center;
-}
+    .dikbox {
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
 
-.adminbtn i{
-    margin:0;
-}
+    .adminmenu {
+        padding: 0 8px;
+        gap: 12px;
+    }
 
-.adminmale{
-    width:60px;
-    height:60px;
-}
+    .adminbtn {
+        width: 100%;
+        height: 44px;
+        justify-content: center;
+        padding: 0;
+        border-radius: 12px;
+    }
 
-}
+    .adminbtn i {
+        margin: 0;
+        font-size: 18px;
+    }
+}

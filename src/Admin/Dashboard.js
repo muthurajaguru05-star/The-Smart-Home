@@ -23,15 +23,21 @@ function Dashboard() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    fetchUsers();
-    fetchProducts();
-    fetchcategory();
-    fetchOrders();
+    const loadAllStats = () => {
+      fetchUsers();
+      fetchProducts();
+      fetchcategory();
+      fetchOrders();
+    };
+
+    loadAllStats();
+    const interval = setInterval(loadAllStats, 4000);
+    return () => clearInterval(interval);
   }, []);
 
   const fetchUsers = () => {
     axios
-      .get("http://localhost:5001/api/users")
+      .get("http://localhost:5001/api/registers")
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err));
   };
@@ -59,7 +65,7 @@ function Dashboard() {
 
   const barData = [
     {
-      name: "Users",
+      name: "User",
       value: users.length
     },
     {

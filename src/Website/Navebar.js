@@ -118,15 +118,17 @@ useEffect(() => {
         <Link to="/contact" className="navelink" onClick={() => setIsMobileOpen(false)}>
           CONTACT
         </Link>
+      </div>
 
+      {/* RIGHT CONTROLS: USER INFO / LOGIN / LOGOUT + CART IN ONE ROW */}
+      <div className="navbar-right-controls">
         <div className="icons">
           {userName ? (
             <div className="user-info">
-               <i className="fa-solid fa-circle-user"></i>
-                   <Link to="/webprofile" className="loginlink" onClick={() => setIsMobileOpen(false)}>
-                  
-                  <span>{userName}</span>
-                  </Link>
+              <i className="fa-solid fa-circle-user"></i>
+              <Link to="/webprofile" className="loginlink" onClick={() => setIsMobileOpen(false)}>
+                <span>{userName}</span>
+              </Link>
               <button
                 className="logout-btn"
                 onClick={handleLogout}
@@ -141,52 +143,47 @@ useEffect(() => {
             </Link>
           )}
         </div>
-      </div>
 
-      {/* CART */}
-      <div
-        className="cart-wrapper"
-        onMouseEnter={() => setShowCart(true)}
-        onMouseLeave={() => setShowCart(false)}
-      >
+        {/* CART */}
+        <div
+          className="cart-wrapper"
+          onMouseEnter={() => setShowCart(true)}
+          onMouseLeave={() => setShowCart(false)}
+        >
+          <Link to="/cart" className="cart-icon">
+            <i className="fa-solid fa-cart-shopping"></i>
 
-        <Link to="/cart" className="cart-icon">
-          <i className="fa-solid fa-cart-shopping"></i>
+            <span className="cart-count">
+              {cartCount}
+            </span>
+          </Link>
 
-          <span className="cart-count">
-            {cartCount}
-          </span>
-        </Link>
+          {showCart && (
+            <div className="cart-dropdown">
+              <h4>Cart Items</h4>
 
-        {showCart && (
-          <div className="cart-dropdown">
-            <h4>Cart Items</h4>
+              {cartItems.length === 0 ? (
+                <p className="empty-cart">Cart Empty</p>
+              ) : (
+                cartItems.map((item, index) => (
+                  <div key={index} className="cart-item">
+                    <img src={item.image} alt={item.title} />
 
-            {cartItems.length === 0 ? (
-              <p className="empty-cart">Cart Empty</p>
-            ) : (
-              cartItems.map((item, index) => (
-                <div key={index} className="cart-item">
-
-                  <img src={item.image} alt={item.title} />
-
-                  <div className="cart-details">
-                    <p>{item.title}</p>
-                    <span>₹{item.price}</span>
-                    <small>Qty: {item.qty}</small>
+                    <div className="cart-details">
+                      <p>{item.title}</p>
+                      <span>₹{item.price}</span>
+                      <small>Qty: {item.qty}</small>
+                    </div>
                   </div>
+                ))
+              )}
 
-                </div>
-              ))
-            )}
-
-            <Link to="/cart" className="view-cart-btn">
-              VIEW CART
-            </Link>
-
-          </div>
-        )}
-
+              <Link to="/cart" className="view-cart-btn">
+                VIEW CART
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
 
     </div>

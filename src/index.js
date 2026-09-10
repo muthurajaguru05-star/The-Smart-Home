@@ -30,34 +30,36 @@ root.render(
     {/* <App /> */}
        <BrowserRouter>
     {/* <Lastnavebar/> */}
-      <Routes>
-        <Route path="/dashboard" element={<Dashboard/>} />
-        {/* <Route path="/" element={<Dashboard/>} /> */}
-        <Route path="/dashboard" element={<Dashboard />} />
-         <Route path="/product" element={<Product />} />
-         <Route path="/addproduct" element={<Addproduct />} />
-          <Route path="/categore" element={<Categore />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/order" element={<Order />}/>
-          <Route path="/addcategory" element={<Addcategory />}/>
-         
-         
-         <Route path="/*" element={<App />} />
-          <Route path='/about' element={<Webabout/>}/>
-          <Route path='/register' element={<Webregister/>}/>
-          <Route path='/login' element={<Weblogin/>}/>
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/payment"element={<Payment />}/>
-          <Route path='/contact' element={<Webcontact/>}/>
+      <div className="page-animated">
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard/>} />
+          {/* <Route path="/" element={<Dashboard/>} /> */}
+          <Route path="/dashboard" element={<Dashboard />} />
+           <Route path="/product" element={<Product />} />
+           <Route path="/addproduct" element={<Addproduct />} />
+            <Route path="/categore" element={<Categore />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/order" element={<Order />}/>
+            <Route path="/addcategory" element={<Addcategory />}/>
+           
+           
+           <Route path="/*" element={<App />} />
+            <Route path='/about' element={<Webabout/>}/>
+            <Route path='/register' element={<Webregister/>}/>
+            <Route path='/login' element={<Weblogin/>}/>
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/payment"element={<Payment />}/>
+            <Route path='/contact' element={<Webcontact/>}/>
 
 
-           <Route path="/webprofile" element={<Webprofile />} />
-             <Route path="/checkout" element={<Webcheckout />} />
-             <Route path="/mailjs" element={<Mailjs/>} />
-             <Route path="/myorders" element={<MyOrders/>}/>
+             <Route path="/webprofile" element={<Webprofile />} />
+               <Route path="/checkout" element={<Webcheckout />} />
+               <Route path="/mailjs" element={<Mailjs/>} />
+               <Route path="/myorders" element={<MyOrders/>}/>
 
-             
-      </Routes>
+               
+        </Routes>
+      </div>
     </BrowserRouter>
   </React.StrictMode>
 )

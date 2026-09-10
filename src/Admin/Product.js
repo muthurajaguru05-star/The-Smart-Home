@@ -75,90 +75,94 @@ const handleDelete = (id) => {
       </div>
 
       <div className="procontent">
-        <div className="totalproducts">
-          <span>Total Products</span>
-          <h2>{getproduct.length}</h2>
+        <div className="procontent-header">
+          <div className="totalproducts">
+            <span>Total Products</span>
+            <h2>{getproduct.length}</h2>
+          </div>
+
+          <div className="productheading">
+            <i className="fa-brands fa-product-hunt"></i>
+            <h2>PRODUCT</h2>
+          </div>
+
+          <Link to="/addproduct" className="addproductclick">
+            <i className="fa-solid fa-plus" style={{ marginRight: '6px' }}></i> Add Product
+          </Link>
         </div>
 
-        {/* <Link to="/addproduct" className="addproductclick">
-          Add product
-        </Link> */}
+        <div className="table-wrapper">
+          <div className="table-scroll-area">
+            <table className="producttable">
+              <thead>
+                <tr>
+                  <th>S No</th>
+                  <th>Category</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                  <th>Img</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
 
-        <Link  to="/addproduct" className="addproductclick">
-          Add Product
-        </Link>
+              <tbody>
+                {currentProducts.map((iteam, index) => (
+                  <tr key={index}>
+                    <td>{indexOfFirstProduct + index + 1}</td>
+                    <td>{iteam.category}</td>
+                    <td>{iteam.title}</td>
+                    <td>₹{iteam.price}</td>
+                    <td>{iteam.stock}</td>
 
-        <div className="productheading">
-          <i className="fa-brands fa-product-hunt"></i>
-          <h2>PRODUCT</h2>
-        </div>
+                    <td>
+                      <img
+                        src={iteam.image}
+                        alt="product"
+                        style={{ objectFit: "cover" }}
+                      />
+                    </td>
 
-        <table className="producttable">
-          <thead>
-            <tr>
-              <th>S No</th>
-              <th>Category</th>
-              <th>Product</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Img</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+                    <td>
+                      <button onClick={() => handleEdit(iteam)}>
+                        <i className="fa-solid fa-pen-to-square"></i> Edit
+                      </button>
+                      <button onClick={() => handleDelete(iteam._id)}>
+                        <i className="fa-solid fa-trash"></i> Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-          <tbody>
-            {currentProducts.map((iteam, index) => (
-              <tr key={index}>
-                <td>{indexOfFirstProduct + index + 1}</td>
-                <td>{iteam.category}</td>
-                <td>{iteam.title}</td>
-                <td>{iteam.price}</td>
-                <td>{iteam.stock}</td>
-
-                <td>
-                  <img
-                    src={iteam.image}
-                    alt="product"
-                    width="70"
-                    height="70"
-                    style={{ objectFit: "cover" }}
-                  />
-                </td>
-
-                <td>
-                  <button onClick={() => handleEdit(iteam)}>Edit</button>
-                  <button   onClick={() => handleDelete(iteam._id)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        {/* Pagination Bar */}
-        <div className="paginationproduct">
-          <button
-            onClick={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Prev
-          </button>
-
-          {[...Array(totalPages)].map((_, index) => (
+          {/* Pagination Bar */}
+          <div className="paginationproduct">
             <button
-              key={index}
-              className={currentPage === index + 1 ? "activePage" : ""}
-              onClick={() => setCurrentPage(index + 1)}
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
             >
-              {index + 1}
+              <i className="fa-solid fa-chevron-left"></i> Prev
             </button>
-          ))}
 
-          <button
-            onClick={() => setCurrentPage(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </button>
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                className={currentPage === index + 1 ? "activePage" : ""}
+                onClick={() => setCurrentPage(index + 1)}
+              >
+                {index + 1}
+              </button>
+            ))}
+
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage === totalPages || totalPages === 0}
+            >
+              Next <i className="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ const handlePayment = () => {
       localStorage.removeItem(`cart_${email}`);
     }
 
-    navigate("/webhome");
+    navigate("/");
   });
 };
   return (
