@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "../Website css/Webregister.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaUser, FaEnvelope, FaPhone, FaLock, FaEye, FaEyeSlash, FaUserTag, FaHome, FaShieldAlt, FaMagic, FaArrowRight, FaCheckCircle } from "react-icons/fa";
 
 function Webregister() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -25,19 +27,23 @@ function Webregister() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-      try {
+    try {
       await axios.post(
         "http://localhost:5001/api/registers",
         formData
       );
 
-       Swal.fire({
+      Swal.fire({
         icon: "success",
         title: "Registration Successful",
-        text: "Account created successfully!",
+        text: "Account created successfully! Redirecting to login...",
         timer: 1500,
         showConfirmButton: false,
+        background: "#1e293b",
+        color: "#fff",
+        iconColor: "#10b981"
       });
 
       setFormData({
@@ -54,123 +60,193 @@ function Webregister() {
 
     } catch (error) {
       console.log(error);
+      setIsSubmitting(false);
 
       Swal.fire({
         icon: "error",
         title: "Registration Failed",
         text: error?.response?.data?.message || "Something went wrong!",
+        background: "#1e293b",
+        color: "#fff",
+        confirmButtonColor: "#ef4444"
       });
     }
   };
 
   return (
     <div className="wholewebregister">
+      {/* Background Animated Gradient Mesh & Particles */}
+      <div className="bg-glow bg-glow-1"></div>
+      <div className="bg-glow bg-glow-2"></div>
+      <div className="bg-glow bg-glow-3"></div>
+      <div className="grid-overlay"></div>
+
       <div className="registercontainer">
-
-        {/* LEFT SIDE */}
+        {/* LEFT SIDE - VISUAL & HERO BANNER */}
         <div className="registerleft">
-          <h1>WELCOME</h1>
-          <h3>CREATE ACCOUNT</h3>
-          <p>
-            Register your account and start exploring our amazing platform.
-          </p>
+          <div className="brand-header">
+            <div className="brand-logo">
+              <FaHome className="brand-icon" />
+            </div>
+            <span className="brand-title">SmartHome AI</span>
+          </div>
 
-          <div className="circle1"></div>
-          <div className="circle2"></div>
-          <div className="circle3"></div>
+          <div className="left-hero-content">
+            <div className="live-badge">
+              <span className="pulse-dot green"></span> Join 50,000+ Smart Homes
+            </div>
+            <h1>Start Your Smart Journey Today</h1>
+            <p>
+              Create your account to unlock instant control over your home's security, climate, and automated ambient lighting.
+            </p>
+
+            <div className="feature-list">
+              <div className="feature-item">
+                <FaMagic className="feat-icon" />
+                <span>AI Automated Room Scenes</span>
+              </div>
+              <div className="feature-item">
+                <FaShieldAlt className="feat-icon" />
+                <span>Bank-Grade Privacy & Encryption</span>
+              </div>
+              <div className="feature-item">
+                <FaCheckCircle className="feat-icon" />
+                <span>Instant Multi-Device Sync</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Floating Live Animation Orbs */}
+          <div className="floating-orb orb-1"></div>
+          <div className="floating-orb orb-2"></div>
+          <div className="floating-orb orb-3"></div>
+          <div className="hero-grid-pattern"></div>
         </div>
 
-        {/* RIGHT SIDE */}
+        {/* RIGHT SIDE - REGISTER FORM */}
         <div className="registerright">
-
-          <h2>Register</h2>
-
           <form onSubmit={handleSubmit} className="registerform">
+            <div className="form-header">
+              <h2>Create Account</h2>
+              <p className="form-subtitle">Fill in your details to set up your smart ecosystem</p>
+            </div>
 
             {/* NAME */}
             <div className="formgroup">
-              <input
-                className="registerinput"
-                type="text"
-                name="name"
-                placeholder="Enter Name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
+              <label htmlFor="reg-name">Full Name</label>
+              <div className="input-box">
+                <FaUser className="input-icon" />
+                <input
+                  id="reg-name"
+                  className="registerinput"
+                  type="text"
+                  name="name"
+                  placeholder="John Doe"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
 
             {/* EMAIL */}
             <div className="formgroup">
-              <input
-                className="registerinput"
-                type="email"
-                name="email"
-                placeholder="Enter Email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
+              <label htmlFor="reg-email">Email Address</label>
+              <div className="input-box">
+                <FaEnvelope className="input-icon" />
+                <input
+                  id="reg-email"
+                  className="registerinput"
+                  type="email"
+                  name="email"
+                  placeholder="john@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
 
             {/* CONTACT */}
             <div className="formgroup">
-              <input
-                className="registerinput"
-                type="tel"
-                name="contact"
-                placeholder="Enter Contact"
-                value={formData.contact}
-                onChange={handleChange}
-                required
-              />
+              <label htmlFor="reg-contact">Contact Number</label>
+              <div className="input-box">
+                <FaPhone className="input-icon" />
+                <input
+                  id="reg-contact"
+                  className="registerinput"
+                  type="tel"
+                  name="contact"
+                  placeholder="+1 (555) 000-0000"
+                  value={formData.contact}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
 
             {/* PASSWORD */}
             <div className="formgroup">
+              <label htmlFor="reg-password">Password</label>
               <div className="passwordwrapper">
+                <FaLock className="input-icon" />
                 <input
+                  id="reg-password"
                   className="registerinput"
                   type={showPassword ? "text" : "password"}
                   name="password"
-                  placeholder="Enter Password"
+                  placeholder="••••••••••••"
                   value={formData.password}
                   onChange={handleChange}
                   required
                 />
-
                 <button
                   type="button"
                   className="showpasswordbtn"
-                  onMouseDown={() => setShowPassword(true)}
-                  onMouseUp={() => setShowPassword(false)}
-                  onMouseLeave={() => setShowPassword(false)}
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label="Toggle password visibility"
                 >
-                  SHOW
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
             </div>
 
             {/* ROLE */}
             <div className="formgroup">
-              <select
-                name="role"
-                className="registerinput"
-                value={formData.role}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Role</option>
-                <option value="user">User</option>
-              </select>
+              <label htmlFor="reg-role">Account Type</label>
+              <div className="input-box">
+                <FaUserTag className="input-icon" />
+                <select
+                  id="reg-role"
+                  name="role"
+                  className="registerinput select-input"
+                  value={formData.role}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="user">Standard User</option>
+                </select>
+              </div>
             </div>
 
-            <button type="submit" className="webregisterbtn">
-              Register
+            <button type="submit" className={`webregisterbtn ${isSubmitting ? "loading" : ""}`} disabled={isSubmitting}>
+              {isSubmitting ? (
+                <span className="spinner"></span>
+              ) : (
+                <>
+                  <span>Create Account</span>
+                  <FaArrowRight className="btn-arrow" />
+                </>
+              )}
             </button>
 
+            <p className="signup-text">
+              Already have an account?{" "}
+              <Link to="/login" className="highlight-link">
+                Sign In
+              </Link>
+            </p>
           </form>
-
         </div>
       </div>
     </div>
